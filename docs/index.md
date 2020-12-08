@@ -8,16 +8,16 @@ Structured Error Handling allows the user to receive the error message in plain 
 ### Pickling
 The following is a script designated to showcase the idea of Pickling.  A set of data is pre-loaded int the program as a pickle list, and the user can call out the specific set of data by typing in a commend.  The header section is eliminated for clarity:
 
-'''
+```
 import pickle
 
-**Declaring the list to pickle**
+#Declaring the list to pickle#
 ToDoList = ["Homework","Lecture","Lab"]
 Priority = ["Low", "High", "Low"]
 Deadline = ["Soon", "1 week", "1 month"]
 TimeEstimate = ["5 hours", "20 hours", "10 hours"]
 
-**Storing the data as pickle**
+#Storing the data as pickle#
 DataFile = open("ToDoList", "wb")
 pickle.dump(ToDoList, DataFile)
 pickle.dump(Priority, DataFile)
@@ -25,14 +25,14 @@ pickle.dump(Deadline, DataFile)
 pickle.dump(TimeEstimate, DataFile)
 DataFile.close()
 
-**opening the pickle file**
+#opening the pickle file#
 DataFile = open("ToDoList", "rb")
 ToDoList = pickle.load(DataFile)
 Priority = pickle.load(DataFile)
 Deadline = pickle.load(DataFile)
 TimeEstimate = pickle.load(DataFile)
 
-**Unpickling the Data**
+#Unpickling the Data#
 
 while(True):
     print('''Here is the list of data in the ToDoList.data: 
@@ -65,7 +65,7 @@ while(True):
     else:
         print("Invalid entry.  Please enter a number between 1-5.")
         continue
-'''
+```
 
 First, the pickle module is imported into the script.  Then a set of data (ToDoList, Deadline, Priority, and TImeEstimate) is loaded into the script.  A binary file is then called out with “wb” indicating that it is writing to a binary file (and will create a binary file if it doesn’t exist).  The set of data is “dumped” into the binary file and loaded.  Then the user has a choice to select which data they would like to call out.
 
@@ -83,20 +83,19 @@ Figure 3. ScreenShot of the ToDoList.dat file that is created with Pickling.
 ### Error Handling
 The following script showcases structured error handling.  The script requires the user to enter a number based on the menu options.  If the user input the number out of range, a custom error will show telling the user to enter a number within range.  If the number entered is not numerical, the user will also be notified that.  Any error outside of these will be indicated as non-specified error:
 
-'''
-**Data--------------------------------------------------------------------**
-*Declare variables and constants*
+```
+#Data--------------------------------------------------------------------#
+#Declare variables and constants#
 strchoice = None
 
 
-**Processing-------------------------------------------------------------**
-
+#Processing-------------------------------------------------------------#
 class RangeError(Exception):
     """The number input is out of range"""
     def __str__(self):
         return "Please enter a number between 1 and 5"
 
-**Presentation (Input/Output)  ------------------------------------------**
+#Presentation (Input/Output)  ------------------------------------------#
 while(True):
     print('''
         Please choose on of the following options:
@@ -120,7 +119,7 @@ while(True):
         print("An error has occur")
         print("Built-In Python error info: ")
         print(e, e.__doc__, sep='\n')
-'''
+```
 
 In the code, the data is first declared (as global).  Then the specific error class (Range Error) is indicated as an Exception showing that the number is out of range.  The docstring information will show if the function is defined as def __doc__(self), but in this case the error message indicated is shown with the __str__(self).  A While(true) loop is then used asking the user to input an option.  If the input is within the range, the script will proceed with the request.  If the input is out of the rang, the range error will be raised.  If the input is not numeric, an Exception will be raised asking the user to input a number (the two methods are interchangeable).  And with all the other exceptions (in the except comment), the message will show as an random error and indicating the python error. 
  
